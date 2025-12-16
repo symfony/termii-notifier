@@ -62,7 +62,7 @@ final class TermiiTransportTest extends TransportTestCase
         $response = $this->createMock(ResponseInterface::class);
         $response->expects(self::exactly(2))->method('getStatusCode')->willReturn(200);
         $response->expects(self::once())->method('getContent')->willReturn(json_encode(['message' => 'Successfully sent', 'message_id' => 'foo', 'balance' => 9, 'user' => 'Foo Bar']));
-        $client = new MockHttpClient(function (string $method, string $url) use ($response): ResponseInterface {
+        $client = new MockHttpClient(static function (string $method, string $url) use ($response): ResponseInterface {
             self::assertSame('POST', $method);
             self::assertSame('https://api.ng.termii.com/api/sms/send', $url);
 
