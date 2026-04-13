@@ -60,7 +60,7 @@ final class TermiiTransportTest extends TransportTestCase
     public function testNoInvalidArgumentExceptionIsThrownIfFromIsValid(string $from)
     {
         $message = new SmsMessage('+33612345678', 'Hello!');
-        $client = new MockHttpClient(function (string $method, string $url): ResponseInterface {
+        $client = new MockHttpClient(static function (string $method, string $url): ResponseInterface {
             self::assertSame('POST', $method);
             self::assertSame('https://api.ng.termii.com/api/sms/send', $url);
 
